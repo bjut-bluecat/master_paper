@@ -1,0 +1,28 @@
+
+# This folder is custom
+
+import os
+rootdir = '/home/bluecat/images/image1'
+#rootdir='/home/bluecat'
+l_f=[]
+
+
+#遍历文件夹
+def iter_files(rootDir):
+    #遍历根目录
+    for root,dirs,files in os.walk(rootDir):
+        for file in files:
+            file_name = os.path.join(root,file)
+            l_f.append(file_name)
+            print(file_name)
+        for dirname in dirs:
+            #递归调用自身,只改变目录名称
+            iter_files(dirname)
+
+iter_files(rootdir)
+
+f = open(r"/home/bluecat/hash_db/filename", "a+")
+for str in l_f:
+    f.writelines(str + "\n")
+f.close()
+
